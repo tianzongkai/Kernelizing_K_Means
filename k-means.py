@@ -3,6 +3,7 @@ from sklearn.cluster import KMeans
 from sklearn import metrics
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 colors = ['darkorchid', 'turquoise', 'darkorange', 'crimson', 'green', 'dodgerblue', 'grey', 'greenyellow','navy']
 
@@ -32,6 +33,7 @@ def run_kmeans_and_plot(dataset):
 
 
 
+
 n_samples = 1500
 noisy_circles = datasets.make_circles(n_samples=n_samples, factor=.5,                                     noise=.05)
 noisy_moons = datasets.make_moons(n_samples=n_samples, noise=.05)
@@ -45,5 +47,22 @@ aniso = (X_aniso, y)
 
 # print aniso
 
-for dataset in [aniso]:
-    run_kmeans_and_plot(dataset)
+for datatuple in [aniso]:
+    run_kmeans_and_plot(datatuple)
+
+
+def kernel_kmeans(datatuple):
+    """
+    :param datatuple: in format of(dataset, list of true labels).
+    each data point is[x,y]
+    :return:
+    """
+    npdataset = np.asarray(datatuple[0])
+    k = max(datatuple[1]) + 1 # k: number of clusters
+    n,_ = npdataset.shape # n: number of data points
+
+    # Note: for matrix z and list c, rows and colums of index 0 is not being used
+    # to be consistent with index in the algorithm
+    z = np.asarray([[0 for j in range(k+1)] for i in range(n+1)]) #z: indicator matrix
+    c = np.asarray([0 for i in range(k+1)]) # c: a list, size of each cluster
+
