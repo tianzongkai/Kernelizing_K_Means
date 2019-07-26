@@ -1,0 +1,5 @@
+[Kernel PCA] 
+
+Given a (mean centered) data D × n data matrix X. A typical way of doing PCA is to analyze the eigenvectors/values of the D × D covariance
+matrix XXT. If D >> n, then computing the covariance and thus PCA is computationally prohibitive. A natural question to wonder is what if
+instead we compute the eigenvectors/values of the much smaller inner product n × n matrix X^T*X?
